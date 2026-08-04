@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday! ✨</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+      color: #fff;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 50px;
+    }
+
+    .container {
+      max-width: 450px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Music Player Card */
+    .music-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .album-art {
+      width: 55px;
+      height: 55px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .song-info {
+      text-align: left;
+      flex-grow: 1;
+    }
+
+    .song-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #ff758c;
+    }
+
+    .song-artist {
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+
+    .music-btn {
+      background: linear-gradient(45deg, #ff758c, #ff7eb3);
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 117, 140, 0.4);
+      transition: transform 0.2s ease;
+    }
+
+    .music-btn:active { transform: scale(0.95); }
+
+    /* Photo Slider */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .slide.active { opacity: 1; }
+
+    .slide img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .slide-caption {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      padding: 15px;
+      text-align: left;
+    }
+
+    .slide-caption h3 { font-size: 1.1rem; color: #ff758c; }
+    .slide-caption p { font-size: 0.85rem; color: #ddd; }
+
+    .slider-btns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: -10px;
+      margin-bottom: 25px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    /* Title Styling */
+    h1 {
+      font-size: 2.2rem;
+      background: linear-gradient(45deg, #ff758c, #ff7eb3, #f7d794);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body onclick="enableAudioOnFirstTouch()">
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="container">
+    
+    <!-- Audio Element & Khalid Player UI -->
+    <div class="music-card">
+      <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=200" alt="Khalid Cover" class="album-art">
+      <div class="song-info">
+        <div class="song-title">Better</div>
+        <div class="song-artist">Khalid 🎵</div>
+      </div>
+      <button class="music-btn" onclick="toggleMusic(event)" id="pBtn">Play ▶</button>
+    </div>
+
+    <!-- Audio Link for Khalid - Better -->
+    <audio id="bgSong" loop preload="auto">
+      <source src="https://ia801503.us.archive.org/15/items/khalid-better/Khalid%20-%20Better.mp3" type="audio/mpeg">
+    </audio>
+
+    <h1>Happy Birthday! 🎂</h1>
+
+    <!-- Photo Slider Gallery -->
+    <div class="slider-container">
+      
+      <!-- Slide 1: image_0.png -->
+      <div class="slide active">
+        <img src="image_0.png" alt="Her Photo 1">
+        <div class="slide-caption">
+          <h3>The Birthday Girl! ✨</h3>
+          <p>Looking radiant! Happy birthday to you!</p>
+        </div>
+      </div>
+
+      <!-- Slide 2: image_1.png -->
+      <div class="slide">
+        <img src="image_1.png" alt="Her Photo 2">
+        <div class="slide-caption">
+          <h3>Wishing You Joy 🌟</h3>
+          <p>Another amazing memory to celebrate.</p>
+        </div>
+      </div>
+
+      <!-- Slide 3: image_0.png -->
+      <div class="slide">
+        <img src="image_0.png" alt="Her Photo 3">
+        <div class="slide-caption">
+          <h3>To Many More! 🎉</h3>
+          <p>May this new year be your best one yet!</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Slider Navigation Buttons -->
+    <div class="slider-btns">
+      <button class="nav-btn" onclick="changeSlide(-1)">◀ Prev</button>
+      <button class="nav-btn" onclick="triggerConfetti()">Confetti 🎊</button>
+      <button class="nav-btn" onclick="changeSlide(1)">Next ▶</button>
+    </div>
+
+  </div>
+
+  <script>
+    const song = document.getElementById('bgSong');
+    const pBtn = document.getElementById('pBtn');
+    let hasPlayedOnce = false;
+
+    // Toggle Music Play/Pause
+    function toggleMusic(e) {
+      if (e) e.stopPropagation(); 
+      if (song.paused) {
+        song.play().then(() => {
+          pBtn.innerText = "Pause ⏸";
+          hasPlayedOnce = true;
+        }).catch(err => console.log("Audio play blocked by browser permissions"));
+      } else {
+        song.pause();
+        pBtn.innerText = "Play ▶";
+      }
+    }
+
+    // Auto-start music on her first tap on the screen
+    function enableAudioOnFirstTouch() {
+      if (!hasPlayedOnce) {
+        song.play().then(() => {
+          pBtn.innerText = "Pause ⏸";
+          hasPlayedOnce = true;
+        }).catch(() => {});
+      }
+    }
+
+    // Photo Slideshow Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function changeSlide(direction) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    // Confetti Animation
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particles = [];
+
+    function triggerConfetti() {
+      for (let i = 0; i < 70; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 10,
+          vy: (Math.random() - 0.5) * 10,
+          size: Math.random() * 6 + 2,
+          color: ['#ff4757', '#2ed573', '#ffa502', '#1e90ff', '#e84393'][Math.floor(Math.random() * 5)],
+          alpha: 1
+        });
+      }
+    }
+
+    function renderParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, index) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= 0.015;
+
+        ctx.globalAlpha = Math.max(p.alpha, 0);
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (p.alpha <= 0) particles.splice(index, 1);
+      });
+      requestAnimationFrame(renderParticles);
+    }
+    renderParticles();
+  </script>
+</body>
+</html>
