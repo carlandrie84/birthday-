@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,7 +166,7 @@
     
     <!-- Audio Element & Khalid Player UI -->
     <div class="music-card">
-      <img src="better.mp3" alt="Khalid Cover" class="album-art">
+      <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=200" alt="Music Cover" class="album-art">
       <div class="song-info">
         <div class="song-title">Better</div>
         <div class="song-artist">Khalid 🎵</div>
@@ -175,9 +174,9 @@
       <button class="music-btn" onclick="toggleMusic(event)" id="pBtn">Play ▶</button>
     </div>
 
-    <!-- Audio Link for Khalid - Better -->
+    <!-- Local Audio Link for GitHub Repository -->
     <audio id="bgSong" loop preload="auto">
-      <source src="https://ia801503.us.archive.org/15/items/khalid-better/Khalid%20-%20Better.mp3" type="audio/mpeg">
+      <source src="better.mp3" type="audio/mpeg">
     </audio>
 
     <h1>Happy Birthday! 🎂</h1>
@@ -203,9 +202,9 @@
         </div>
       </div>
 
-      <!-- Slide 3: image_0.png -->
+      <!-- Slide 3: image_2.png -->
       <div class="slide">
-        <img src="image_0.png" alt="Her Photo 3">
+        <img src="image_2.png" alt="Her Photo 3">
         <div class="slide-caption">
           <h3>To Many More! 🎉</h3>
           <p>May this new year be your best one yet!</p>
@@ -235,7 +234,7 @@
         song.play().then(() => {
           pBtn.innerText = "Pause ⏸";
           hasPlayedOnce = true;
-        }).catch(err => console.log("Audio play blocked by browser permissions"));
+        }).catch(err => console.log("Audio play error:", err));
       } else {
         song.pause();
         pBtn.innerText = "Play ▶";
