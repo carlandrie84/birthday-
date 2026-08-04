@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,12 +25,37 @@
       text-align: center;
     }
 
-    /* Spotify Embed Wrapper */
+    /* Music Player Container */
     .music-container {
       margin-bottom: 25px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       border-radius: 12px;
       overflow: hidden;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .audio-wrapper {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .song-title-label {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #ff758c;
+      margin-bottom: 10px;
+    }
+
+    audio {
+      width: 100%;
+      height: 40px;
+      border-radius: 10px;
+      outline: none;
     }
 
     /* Photo Slider */
@@ -121,43 +147,19 @@
 
   <div class="container">
     
-    <!-- Spotify Embedded Player -->
+    <!-- Verified Spotify Embed Player -->
     <div class="music-container">
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6LSp1rs2P3K39217A32o3X?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6tMQlMydMs3iRGDW9uvUTe?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
-    <h1>Happy Birthday! 🎂</h1>
-
-    <!-- Photo Slider Gallery -->
-    <div class="slider-container">
-      
-      <!-- Slide 1: image_0.png -->
-      <div class="slide active">
-        <img src="image_0.png" alt="Her Photo 1">
-        <div class="slide-caption">
-          <h3>The Birthday Girl! ✨</h3>
-          <p>Looking radiant! Happy birthday to you!</p>
-        </div>
-      </div>
-
-      <!-- Slide 2: image_1.png (Ensure space is removed from repo filename) -->
-      <div class="slide">
-        <img src="image_1.png" alt="Her Photo 2">
-        <div class="slide-caption">
-          <h3>Wishing You Joy 🌟</h3>
-          <p>Another amazing memory to celebrate.</p>
-        </div>
-      </div>
-
-      <!-- Slide 3: image_2.png -->
-      <div class="slide">
-        <img src="image_2.png" alt="Her Photo 3">
-        <div class="slide-caption">
-          <h3>To Many More! 🎉</h3>
-          <p>May this new year be your best one yet!</p>
-        </div>
-      </div>
-
+    <!-- Backup Direct Native Audio Player -->
+    <div class="audio-wrapper">
+      <div class="song-title-label">🎵 Khalid - Better (Direct Audio)</div>
+      <audio controls preload="auto">
+        <source src="better.mp3" type="audio/mpeg">
+        <source src="https://ia801503.us.archive.org/15/items/khalid-better/Khalid%20-%20Better.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
-    <!-- Slider Navigatio
+    <h1    
